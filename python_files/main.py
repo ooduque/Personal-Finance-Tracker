@@ -4,12 +4,13 @@ from datetime import datetime
 from data_entry import get_amount, get_category, get_date, get_description
 import matplotlib.pyplot as plt
 
-
+# Class to handle CSV file operations
 class CSV:
-    CSV_FILE = "finance_data.csv"
+    CSV_FILE = "csv_load/finance_data.csv"
     COLUMNS = ["date", "amount", "category", "description"]
     FORMAT = "%d-%m-%Y"
 
+    # Initializes the CSV file if it doesn't exist
     @classmethod
     def initialize_csv(cls):
         try:
@@ -18,6 +19,7 @@ class CSV:
             df = pd.DataFrame(columns=cls.COLUMNS)
             df.to_csv(cls.CSV_FILE, index=False)
     
+    # Adds a new entry to the CSV file
     @classmethod
     def add_entry(cls, date, amount, category, description):
         new_entry = {
@@ -31,6 +33,7 @@ class CSV:
             writer.writerow(new_entry)
         print("Entry added successfully")
 
+    # Retrieves transactions within a specified date range
     @classmethod
     def get_transactions(cls, start_date, end_date):
         df = pd.read_csv(cls.CSV_FILE)
@@ -62,6 +65,7 @@ class CSV:
 
         return filtered_df
 
+    # Deletes an entry from the CSV file by row ID
     @classmethod
     def delete_entry(cls, row_id):
         df = pd.read_csv(cls.CSV_FILE)
@@ -72,6 +76,7 @@ class CSV:
         else:
             print("Invalid row ID. No entry deleted.")
 
+    # Updates an entry in the CSV file by row ID
     @classmethod
     def update_entry(cls, row_id, date=None, amount=None, category=None, description=None):
         df = pd.read_csv(cls.CSV_FILE)
@@ -89,6 +94,7 @@ class CSV:
         else:
             print("Invalid row ID. No entry updated.")
 
+# Function to add a new transaction
 def add():
     CSV.initialize_csv()
     date = get_date("Enter the date of the transaction (dd-mm-yyyy) or enter for today's date: ", allow_default=True)
@@ -97,6 +103,7 @@ def add():
     description = get_description()
     CSV.add_entry(date, amount, category, description)
 
+# Function to plot income and expense over time
 def plot_transactions(df):
     df.set_index("date", inplace=True)
 
@@ -113,6 +120,7 @@ def plot_transactions(df):
     plt.grid(True)
     plt.show()
 
+# Main function to handle the user interface and input
 def main():
     while True:
         print("\n1. Add a new transaction")
