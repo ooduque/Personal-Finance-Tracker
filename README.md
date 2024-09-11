@@ -7,7 +7,7 @@ The user can add entries, view entries, update as well as delete entries.
 
 # Tools Used:
 
-- **CSV:** CSV files are efficient and lightweight for storing large datasets and because they are plain text files, they are compatible with different platforms and systems, making them easy to read, write, and edit with minimal software requirements.
+- **CSV:** CSV files are efficient and lightweight for storing large datasets and because they are plain text files, they are compatible with different platforms and systems, making them easy to read, write, and edit with minimal software requirements. The dataset is made up of hypothetical data we created and generated the larger (80+%) part of it with chatgpt, so this can have an impact on the output graph of a period.
 
 - **Python:** Python is the number one choice for this project, the versatility and extensive library made it so. Python is easy to use and read and it has a large community that is active which provides extensive documentation, support, and facilitates problem-solving.
 
